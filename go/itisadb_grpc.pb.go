@@ -2,9 +2,9 @@
 // versions:
 // - protoc-gen-go-grpc v1.3.0
 // - protoc             v4.23.4
-// source: api/proto/itisadb.proto
+// source: itisadb.proto
 
-package itisadb_go_proto
+package _go
 
 import (
 	context "context"
@@ -919,5 +919,5 @@ var ItisaDB_ServiceDesc = grpc.ServiceDesc{
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
-	Metadata: "api/proto/itisadb.proto",
+	Metadata: "itisadb.proto",
 }

@@ -72,6 +72,7 @@ message SetRequest {
     optional int32 server = 1;
     bool readOnly = 2;
     Level level = 3;
+    bool unique = 4;
   }
   Options options = 3;
 }

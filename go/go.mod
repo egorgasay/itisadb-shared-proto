@@ -1,6 +1,6 @@
 module github.com/egorgasay/itisadb-shared-proto/go
 
-go 1.21.0
+go 1.19.0
 
 require (
 	google.golang.org/grpc v1.59.0
