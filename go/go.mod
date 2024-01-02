@@ -1,4 +1,4 @@
-module github.com/egorgasay/itisadb-shared-proto/go
+module github.com/egorgasay/itisadb-shared-proto
 
 go 1.19.0
 
