@@ -249,7 +249,7 @@ message ChangeLevelRequest {
 
 message GetResponse {
   string value = 1;
-  string readOnly = 2;
+  bool readOnly = 2;
   Level level = 3;
 }
 
