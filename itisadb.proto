@@ -299,6 +299,7 @@ message GetFromObjectResponse {
 }
 
 message ObjectResponse{
+  int32 server = 1;
 }
 
 message DeleteObjectResponse{
