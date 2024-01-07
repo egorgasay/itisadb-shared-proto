@@ -35,7 +35,7 @@ const (
 	ItisaDB_DeleteObject_FullMethodName   = "/api.ItisaDB/DeleteObject"
 	ItisaDB_DeleteAttr_FullMethodName     = "/api.ItisaDB/DeleteAttr"
 	ItisaDB_Authenticate_FullMethodName   = "/api.ItisaDB/Authenticate"
-	ItisaDB_CreateUser_FullMethodName     = "/api.ItisaDB/CreateUser"
+	ItisaDB_NewUser_FullMethodName        = "/api.ItisaDB/NewUser"
 	ItisaDB_DeleteUser_FullMethodName     = "/api.ItisaDB/DeleteUser"
 	ItisaDB_ChangePassword_FullMethodName = "/api.ItisaDB/ChangePassword"
 	ItisaDB_ChangeLevel_FullMethodName    = "/api.ItisaDB/ChangeLevel"
@@ -64,7 +64,7 @@ type ItisaDBClient interface {
 	DeleteObject(ctx context.Context, in *DeleteObjectRequest, opts ...grpc.CallOption) (*DeleteObjectResponse, error)
 	DeleteAttr(ctx context.Context, in *DeleteAttrRequest, opts ...grpc.CallOption) (*DeleteAttrResponse, error)
 	Authenticate(ctx context.Context, in *AuthRequest, opts ...grpc.CallOption) (*AuthResponse, error)
-	CreateUser(ctx context.Context, in *CreateUserRequest, opts ...grpc.CallOption) (*CreateUserResponse, error)
+	NewUser(ctx context.Context, in *NewUserRequest, opts ...grpc.CallOption) (*NewUserResponse, error)
 	DeleteUser(ctx context.Context, in *DeleteUserRequest, opts ...grpc.CallOption) (*DeleteUserResponse, error)
 	ChangePassword(ctx context.Context, in *ChangePasswordRequest, opts ...grpc.CallOption) (*ChangePasswordResponse, error)
 	ChangeLevel(ctx context.Context, in *ChangeLevelRequest, opts ...grpc.CallOption) (*ChangeLevelResponse, error)
@@ -217,9 +217,9 @@ func (c *itisaDBClient) Authenticate(ctx context.Context, in *AuthRequest, opts 
 	return out, nil
 }
 
-func (c *itisaDBClient) CreateUser(ctx context.Context, in *CreateUserRequest, opts ...grpc.CallOption) (*CreateUserResponse, error) {
-	out := new(CreateUserResponse)
-	err := c.cc.Invoke(ctx, ItisaDB_CreateUser_FullMethodName, in, out, opts...)
+func (c *itisaDBClient) NewUser(ctx context.Context, in *NewUserRequest, opts ...grpc.CallOption) (*NewUserResponse, error) {
+	out := new(NewUserResponse)
+	err := c.cc.Invoke(ctx, ItisaDB_NewUser_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -308,7 +308,7 @@ type ItisaDBServer interface {
 	DeleteObject(context.Context, *DeleteObjectRequest) (*DeleteObjectResponse, error)
 	DeleteAttr(context.Context, *DeleteAttrRequest) (*DeleteAttrResponse, error)
 	Authenticate(context.Context, *AuthRequest) (*AuthResponse, error)
-	CreateUser(context.Context, *CreateUserRequest) (*CreateUserResponse, error)
+	NewUser(context.Context, *NewUserRequest) (*NewUserResponse, error)
 	DeleteUser(context.Context, *DeleteUserRequest) (*DeleteUserResponse, error)
 	ChangePassword(context.Context, *ChangePasswordRequest) (*ChangePasswordResponse, error)
 	ChangeLevel(context.Context, *ChangeLevelRequest) (*ChangeLevelResponse, error)
@@ -368,8 +368,8 @@ func (UnimplementedItisaDBServer) DeleteAttr(context.Context, *DeleteAttrRequest
 func (UnimplementedItisaDBServer) Authenticate(context.Context, *AuthRequest) (*AuthResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Authenticate not implemented")
 }
-func (UnimplementedItisaDBServer) CreateUser(context.Context, *CreateUserRequest) (*CreateUserResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method CreateUser not implemented")
+func (UnimplementedItisaDBServer) NewUser(context.Context, *NewUserRequest) (*NewUserResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method NewUser not implemented")
 }
 func (UnimplementedItisaDBServer) DeleteUser(context.Context, *DeleteUserRequest) (*DeleteUserResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DeleteUser not implemented")
@@ -675,20 +675,20 @@ func _ItisaDB_Authenticate_Handler(srv interface{}, ctx context.Context, dec fun
 	return interceptor(ctx, in, info, handler)
 }
 
-func _ItisaDB_CreateUser_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(CreateUserRequest)
+func _ItisaDB_NewUser_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(NewUserRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ItisaDBServer).CreateUser(ctx, in)
+		return srv.(ItisaDBServer).NewUser(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: ItisaDB_CreateUser_FullMethodName,
+		FullMethod: ItisaDB_NewUser_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ItisaDBServer).CreateUser(ctx, req.(*CreateUserRequest))
+		return srv.(ItisaDBServer).NewUser(ctx, req.(*NewUserRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -887,8 +887,8 @@ var ItisaDB_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _ItisaDB_Authenticate_Handler,
 		},
 		{
-			MethodName: "CreateUser",
-			Handler:    _ItisaDB_CreateUser_Handler,
+			MethodName: "NewUser",
+			Handler:    _ItisaDB_NewUser_Handler,
 		},
 		{
 			MethodName: "DeleteUser",
