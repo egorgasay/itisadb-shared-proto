@@ -22,7 +22,7 @@ service ItisaDB {
   rpc DeleteAttr(DeleteAttrRequest) returns (DeleteAttrResponse) {}
 
   rpc Authenticate(AuthRequest) returns (AuthResponse) {}
-  rpc CreateUser(CreateUserRequest) returns (CreateUserResponse) {}
+  rpc NewUser(NewUserRequest) returns (NewUserResponse) {}
   rpc DeleteUser(DeleteUserRequest) returns (DeleteUserResponse) {}
   rpc ChangePassword(ChangePasswordRequest) returns (ChangePasswordResponse) {}
   rpc ChangeLevel(ChangeLevelRequest) returns (ChangeLevelResponse) {}
@@ -223,7 +223,7 @@ message AuthRequest {
 message GetRamRequest {
 }
 
-message CreateUserRequest {
+message NewUserRequest {
   User user = 1;
 }
 
@@ -317,7 +317,7 @@ message GetRamResponse {
   Ram ram = 1;
 }
 
-message CreateUserResponse {
+message NewUserResponse {
 }
 
 message DeleteUserResponse {
